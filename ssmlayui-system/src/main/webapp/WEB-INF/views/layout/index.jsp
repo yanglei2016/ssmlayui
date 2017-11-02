@@ -5,42 +5,47 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>后台管理系统</title>
-<%@include file="/common/include.jsp" %>
+<%@include file="../common/include.jsp" %>
 </head>
-<body>
-
-<%@include file="header.jsp" %>
-<div id="middle">
-<jsp:include page="left.jsp" />
-    <script type="text/javascript">
-		function clickMenu(menuUrl, obj)
-		{
-			if (menuUrl == "") 
-			{
-				return;
-			}
-			if (menuUrl.indexOf("?") != -1)
-			{
-				menuUrl = menuUrl + "&randomParameter="+Math.random();
-			}
-			else
-			{
-				menuUrl = menuUrl + "?randomParameter="+Math.random();
-			}
+<body class="main_body">
+	<div class="layui-layout layui-layout-admin">
+		<!-- top -->
+		<%@include file="header.jsp" %>
+		
+		<!-- middle -->
+		<jsp:include page="left.jsp" />
+		    
+		<div class="right"  id="mainFrame">
+			<iframe src="welcome.do" align="left" scrolling="no" width="100%"  height="100%" id="systemContentIFrame" name="systemContentIFrame" frameborder="0" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" noresize></iframe>
+		</div>
+		<form name="menuForm" id="menuForm" method="post" target="systemContentIFrame" action="">
+		</form>
 			
-			menuForm.target = "systemContentIFrame";
-			menuForm.action = menuUrl;
-			menuForm.submit();
-			$(obj).parent().parent().find("div").find("a").removeClass("current");
-			$(obj).addClass("current");
-			layer.load(2, {shade: [0.2, '#393D49']});
+		<!-- footer -->
+		<jsp:include page="footer.jsp" />
+	</div>
+
+<script type="text/javascript">
+	function clickMenu(menuUrl, obj)
+	{
+		if (menuUrl == "") 
+		{
+			return;
 		}
-	</script>
-	<div class="right"  id="mainFrame">
-		<iframe src="welcome.do" align="left" scrolling="no" width="100%"  height="100%" id="systemContentIFrame" name="systemContentIFrame" frameborder="0" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" noresize></iframe>
- 	</div>
-	<form name="menuForm" id="menuForm" method="post" target="systemContentIFrame" action="">
-	</form>
-<jsp:include page="footer.jsp" />
+		if (menuUrl.indexOf("?") != -1)
+		{
+			menuUrl = menuUrl + "&randomParameter="+Math.random();
+		}
+		else
+		{
+			menuUrl = menuUrl + "?randomParameter="+Math.random();
+		}
+		
+		menuForm.target = "systemContentIFrame";
+		menuForm.action = menuUrl;
+		menuForm.submit();
+		layer.load(2, {shade: [0.2, '#393D49']});
+	}
+</script>
 </body>
 </html>

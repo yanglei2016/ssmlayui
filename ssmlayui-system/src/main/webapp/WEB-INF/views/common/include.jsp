@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/static/layui/css/layui.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/header.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/main.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/layui/layui.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/ssm_common.js"></script>

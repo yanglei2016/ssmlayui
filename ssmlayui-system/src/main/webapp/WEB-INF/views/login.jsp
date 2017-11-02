@@ -21,10 +21,10 @@
 		<h1>XXXX管理系统</h1>
 	    <form class="layui-form">
 	    	<div class="layui-form-item">
-				<input class="layui-input" type="text" name="userName" placeholder="用户名" lay-verify="required" autocomplete="off"/>
+				<input class="layui-input" type="text" name="userName" placeholder="用户名" lay-verify="required" autocomplete="off" value="admin"/>
 		    </div>
 		    <div class="layui-form-item">
-				<input class="layui-input" type="password" name="password" placeholder="密码" lay-verify="required" autocomplete="off"/>
+				<input class="layui-input" type="password" name="password" placeholder="密码" lay-verify="required" autocomplete="off" value="111111"/>
 		    </div>
 			<button class="layui-btn login_btn" lay-submit="" lay-filter="login">登录</button>
 		</form>
@@ -53,7 +53,9 @@
 			indicator:'none'
 		});
 		
-		
+		form.on('submit(login)', function (data) {
+			location.href = "${pageContext.request.contextPath }/login.do?userName=admin&password=111111";
+		});
 		
 	});
 </script>

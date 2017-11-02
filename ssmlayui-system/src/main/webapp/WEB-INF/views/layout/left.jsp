@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/common/include.jsp" %>
+<%@include file="../common/include.jsp" %>
 <script type="text/javascript">
-var myMenu;
-window.onload = function() {
-	myMenu = new SDMenu("my_menu");
-	myMenu.init();
-};
 </script>
 <div class="left">
 	<div id="my_menu" class="sdmenu">

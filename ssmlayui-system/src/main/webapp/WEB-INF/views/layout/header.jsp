@@ -1,33 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<div class="header">
-    <div class="logo">
-        <img  src="${pageContext.request.contextPath }/resourcesStyle/img/logo.png" style="height: 50px; width: 200px;" />
-    </div>
-    <div class="header-right">
-		 <i class="icon-question-sign icon-white"></i> 
-		 <a href="#">帮助</a> 
-		 <i class="icon-off icon-white"></i> 
-		 <a id="modal-973558" href="#modal-container-973558" role="button" data-toggle="modal">注销</a> 
-		 <i class="icon-user icon-white"></i> 
-		 <a href="#">${sessionScope.USER_INFO.userId} / ${sessionScope.USER_INFO.userName}</a> 
-		 <i class="icon-envelope icon-white"></i> <a href="#">发送短信</a>
-		<div id="modal-container-973558" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:300px; margin-left:-150px; top:30%">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h3 id="myModalLabel">
-					注销系统
-				</h3>
-			</div>
-			<div class="modal-body">
-				<p>
-					您确定要注销退出系统吗？
-				</p>
-			</div>
-			<div class="modal-footer">
-				 <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button> 
-				 <a class="btn btn-primary" style="line-height:20px;" href="logout.do" >确定退出</a>
-			</div>
-		</div>
+<div class="layui-header header">
+	<div class="layui-main">
+		<a href="#" class="logo">layui后台管理</a>
+		<!-- 显示/隐藏菜单 -->
+		<a href="javascript:;" class="iconfont hideMenu icon-menu1"></a>
+	    <!-- 顶部右侧菜单 -->
+	    <ul class="layui-nav top_menu">
+	    	<li class="layui-nav-item showNotice" id="showNotice" pc>
+				<a href="javascript:;"><i class="iconfont icon-gonggao"></i><cite>系统公告</cite></a>
+			</li>
+			<li class="layui-nav-item lockcms" pc>
+				<a href="javascript:;"><i class="iconfont icon-lock1"></i><cite>锁屏</cite></a>
+			</li>
+			<li class="layui-nav-item" pc>
+				<a href="javascript:;">
+					<img src="${pageContext.request.contextPath }/static/images/face.jpg" class="layui-circle" width="35" height="35">
+					<cite>${sessionScope.USER_INFO.userId} / ${sessionScope.USER_INFO.userName}</cite>
+				</a>
+				<dl class="layui-nav-child">
+					<dd><a href="javascript:;" data-url="page/user/userInfo.html"><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite>个人资料</cite></a></dd>
+					<dd><a href="javascript:;" data-url="page/user/changePwd.html"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>修改密码</cite></a></dd>
+					<dd><a href="javascript:;" class="changeSkin"><i class="iconfont icon-huanfu"></i><cite>更换皮肤</cite></a></dd>
+					<dd><a href="page/login/login.html" class="signOut"><i class="iconfont icon-loginout"></i><cite>退出</cite></a></dd>
+				</dl>
+			</li>
+		</ul>
 	</div>
 </div>
 <!-- 顶部 -->
