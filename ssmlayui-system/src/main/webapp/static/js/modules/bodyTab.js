@@ -13,7 +13,7 @@ layui.define(["element","jquery"],function(exports){
 			this.tabConfig = {
 				closed : true,  
 				openTabNum : undefined,  //最大可打开窗口数量
-				tabFilter : "bodyTab1",  //添加窗口的filter
+				tabFilter : "bodyTab",  //添加窗口的filter
 				data : undefined  //获取菜单json地址
 			}
 		};

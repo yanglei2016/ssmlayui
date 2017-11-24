@@ -1,12 +1,12 @@
 var $,tab,skyconsWeather;
-layui.use(['bodyTab','form','element','layer','jquery'],function(){
+layui.use(['bodyTab', 'form', 'element', 'layer', 'jquery'], function(){
 	var form = layui.form,
 		layer = layui.layer,
 		element = layui.element;
 		$ = layui.jquery;
 		tab = layui.bodyTab({
-			openTabNum : "50",  //最大可打开窗口数量
-			data : leftMenuJson //获取菜单json地址
+			openTabNum : "50",   // 最大可打开窗口数量
+			data : leftMenuJson  // 获取菜单json地址
 		});
 
 	//更换皮肤
@@ -240,10 +240,10 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
 	}
 	//判断是否处于锁屏状态(如果关闭以后则未关闭浏览器之前不再显示)
 	if(window.sessionStorage.getItem("lockcms") != "true" && window.sessionStorage.getItem("showNotice") != "true"){
-		showNotice();
+		//showNotice();
 	}
 	$(".showNotice").on("click",function(){
-		showNotice();
+		//showNotice();
 	})
 
 	//刷新后还原打开的窗口
