@@ -82,17 +82,6 @@ function selectAllBox(ctrlId, boxName){
 }
 
 //====================layer弹出层封装=============begin========================
-function sysMsg(msg){
-	var index = parent.layer.msg(msg, {offset: 't'});
-	parent.layer.style(index, {
-		 background: '#F7B824',
-		 color:'#fff',
-    	 border: '0px'
-	});
-}
-function sysAlert(msg){
-	parent.layer.alert(msg); 
-}
 
 
 //====================layer弹出层封装==============end=========================

@@ -18,7 +18,7 @@
 		
 		<!-- 右侧内容 -->
 		<div class="layui-body layui-form">
-			<div class="layui-tab marg0" lay-filter="bodyTab" id="top_tabs_box">
+			<div class="layui-tab marg0" lay-filter="bodyTab" id="top_tabs_box" lay-allowclose="true">
 				<ul class="layui-tab-title top_tab" id="top_tabs">
 					<li class="layui-this" lay-id=""><i class="iconfont icon-computer"></i> <cite>首页</cite></li>
 				</ul>
