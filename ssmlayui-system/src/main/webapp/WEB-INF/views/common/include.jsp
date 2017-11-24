@@ -12,6 +12,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/layui/layui.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/ssm_common.js"></script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/leftNav.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/index.js"></script>
+	
 <script type="text/javascript">
 
 </script>

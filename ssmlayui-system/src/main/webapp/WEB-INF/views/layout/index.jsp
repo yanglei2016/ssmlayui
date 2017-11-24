@@ -12,40 +12,40 @@
 		<!-- top -->
 		<%@include file="header.jsp" %>
 		
-		<!-- middle -->
+		<!-- left -->
 		<jsp:include page="left.jsp" />
-		    
-		<div class="right"  id="mainFrame">
-			<iframe src="welcome.do" align="left" scrolling="no" width="100%"  height="100%" id="systemContentIFrame" name="systemContentIFrame" frameborder="0" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" noresize></iframe>
+		
+		
+		<!-- 右侧内容 -->
+		<div class="layui-body layui-form">
+			<div class="layui-tab marg0" lay-filter="bodyTab" id="top_tabs_box">
+				<ul class="layui-tab-title top_tab" id="top_tabs">
+					<li class="layui-this" lay-id=""><i class="iconfont icon-computer"></i> <cite>首页</cite></li>
+				</ul>
+				<ul class="layui-nav closeBox">
+				  <li class="layui-nav-item">
+				    <a href="javascript:;"><i class="iconfont icon-caozuo"></i> 页面操作</a>
+				    <dl class="layui-nav-child">
+					  <dd><a href="javascript:;" class="refresh refreshThis"><i class="layui-icon">&#x1002;</i> 刷新当前</a></dd>
+				      <dd><a href="javascript:;" class="closePageOther"><i class="iconfont icon-prohibit"></i> 关闭其他</a></dd>
+				      <dd><a href="javascript:;" class="closePageAll"><i class="iconfont icon-guanbi"></i> 关闭全部</a></dd>
+				    </dl>
+				  </li>
+				</ul>
+				<div class="layui-tab-content clildFrame">
+					<div class="layui-tab-item layui-show">
+						<iframe src="welcome.do" align="left" scrolling="no" width="100%"  height="100%" id="systemContentIFrame" name="systemContentIFrame" frameborder="0" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" noresize></iframe>
+					</div>
+				</div>
+			</div>
 		</div>
-		<form name="menuForm" id="menuForm" method="post" target="systemContentIFrame" action="">
-		</form>
 			
 		<!-- footer -->
 		<jsp:include page="footer.jsp" />
 	</div>
 
 <script type="text/javascript">
-	function clickMenu(menuUrl, obj)
-	{
-		if (menuUrl == "") 
-		{
-			return;
-		}
-		if (menuUrl.indexOf("?") != -1)
-		{
-			menuUrl = menuUrl + "&randomParameter="+Math.random();
-		}
-		else
-		{
-			menuUrl = menuUrl + "?randomParameter="+Math.random();
-		}
-		
-		menuForm.target = "systemContentIFrame";
-		menuForm.action = menuUrl;
-		menuForm.submit();
-		layer.load(2, {shade: [0.2, '#393D49']});
-	}
+
 </script>
 </body>
 </html>

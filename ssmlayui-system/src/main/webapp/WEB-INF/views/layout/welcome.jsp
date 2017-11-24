@@ -5,23 +5,22 @@
 <%@include file="../common/include.jsp" %>
 </head>
 <body>
-</script>
-<div class="right"  id="mainFrame">
-	<div class="right_cont">
-		<ul class="breadcrumb">当前位置：
-			<a href="#">首页</a> <span class="divider">/</span>
-			欢迎页
-		</ul>
-	<div class="title_right"><strong>登陆成功</strong></div>  
-	   <div style="width:100%; margin:auto">
-			<table class="table table-bordered">
+<div class="childrenBody"  id="mainFrame">
+	<div class="">
+		<span class="layui-breadcrumb">
+		  <a href="/">首页</a>
+		  <a href="/demo/">演示</a>
+		  <a><cite>导航元素</cite></a>
+		</span>
+		<div style="width:100%; margin:auto">
+			<table class="layui-table">
 				<tr>
-					<td width="30%" align="right" bgcolor="#f1f1f1">提示：</td>
-					<td >欢迎xxx登陆</td>
+					<td>提示：</td>
+					<td>欢迎xxx登陆</td>
 				</tr>
 			</table>
 		</div>
-	</div>     
+	</div>
 </div>
 </body>
 </html>
