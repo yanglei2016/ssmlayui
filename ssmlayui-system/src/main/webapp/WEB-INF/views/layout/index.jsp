@@ -18,7 +18,7 @@
 		
 		<!-- 右侧内容 -->
 		<div class="layui-body layui-form">
-			<div class="layui-tab marg0" lay-filter="bodyTab" id="top_tabs_box" lay-allowclose="true">
+			<div class="layui-tab marg0" lay-filter="bodyTab1" id="top_tabs_box">
 				<ul class="layui-tab-title top_tab" id="top_tabs">
 					<li class="layui-this" lay-id=""><i class="iconfont icon-computer"></i> <cite>首页</cite></li>
 				</ul>
@@ -45,7 +45,41 @@
 	</div>
 
 <script type="text/javascript">
+var leftMenuJson = '${leftMenuJson}';
+console.log(leftMenuJson);
+
+var $, tab, skyconsWeather;
+layui.use(['bodyTab','form','element','layer','jquery'],function(){
+	var form = layui.form,
+		layer = layui.layer,
+		element = layui.element;
+		$ = layui.jquery;
+		tab = layui.bodyTab({
+			openTabNum : "50",   // 最大可打开窗口数量
+			data : leftMenuJson  // 获取菜单json地址
+		});
+	
+	//渲染左侧菜单
+	tab.render();
+	
+	// 添加新窗口
+	$("body").on("click",".layui-nav .layui-nav-item a",function(){
+		//如果不存在子级
+		if($(this).siblings().length == 0){
+			addTab($(this));
+			$('body').removeClass('site-mobile');  //移动端点击菜单关闭菜单层
+		}
+		$(this).parent("li").siblings().removeClass("layui-nav-itemed");
+	})
+	
+	//打开新窗口
+	function addTab(_this){
+		tab.tabAdd(_this);
+	}
+	
+});
 
 </script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/leftNav.js"></script>
 </body>
 </html>

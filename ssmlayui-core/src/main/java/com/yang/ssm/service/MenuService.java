@@ -3,6 +3,7 @@ package com.yang.ssm.service;
 import java.util.List;
 
 import com.yang.ssm.domain.Menu;
+import com.yang.ssm.domain.MenuVo;
 
 /**
  * 
@@ -11,7 +12,7 @@ import com.yang.ssm.domain.Menu;
  */
 public interface MenuService {
 
-	public List<Menu> selectLeftMenuList(String userId);
+	public List<MenuVo> selectLeftMenuList(String userId);
 	
 	public String getTreeData();
 	

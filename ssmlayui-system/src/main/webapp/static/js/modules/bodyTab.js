@@ -6,31 +6,28 @@
 */
 var tabFilter,menu=[],liIndex,curNav,delMenu;
 layui.define(["element","jquery"],function(exports){
-	var element = layui.element(),
+	var element = layui.element,
 		$ = layui.jquery,
 		layId,
 		Tab = function(){
 			this.tabConfig = {
 				closed : true,  
 				openTabNum : undefined,  //最大可打开窗口数量
-				tabFilter : "bodyTab",  //添加窗口的filter
-				url : undefined  //获取菜单json地址
+				tabFilter : "bodyTab1",  //添加窗口的filter
+				data : undefined  //获取菜单json地址
 			}
 		};
 
 	//获取二级菜单数据
 	Tab.prototype.render = function() {
-		var url = this.tabConfig.url;
-		$.get(url,function(data){
-			//显示左侧菜单
-			if($(".navBar").html() == ''){
-				var _this = this;
-				$(".navBar").html(navBar(data)).height($(window).height()-245);
-				element.init();  //初始化页面元素
-				$(window).resize(function(){
-					$(".navBar").height($(window).height()-245);
-				})
-			}
+		var data = this.tabConfig.data;
+		//显示左侧菜单
+		var _this = this;
+		//console.log("data======:"+data);
+		$(".navBar").html(navBar(data)).height($(window).height()-245);
+		element.init();  //初始化页面元素
+		$(window).resize(function(){
+			$(".navBar").height($(window).height()-245);
 		})
 	}
 

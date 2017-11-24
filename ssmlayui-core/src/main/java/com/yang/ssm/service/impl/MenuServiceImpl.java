@@ -3,11 +3,11 @@ package com.yang.ssm.service.impl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +16,7 @@ import com.yang.common.tools.json.GsonUtils;
 import com.yang.ssm.dao.MenuMapper;
 import com.yang.ssm.dao.RoleMenuMapper;
 import com.yang.ssm.domain.Menu;
+import com.yang.ssm.domain.MenuVo;
 import com.yang.ssm.service.MenuService;
 import com.yang.ssm.util.SysWebUtils;
 
@@ -35,42 +36,44 @@ public class MenuServiceImpl implements MenuService {
 	private SysWebUtils sysWebUtils;
 	
 	@Override
-	public List<Menu> selectLeftMenuList(String userId) {
+	public List<MenuVo> selectLeftMenuList(String userId) {
 		List<Menu> menuList = menuMapper.selectTreeMenuList(userId);
-		List<Menu> leftMenuList = this.getLeftMenuList(menuList);
-		return leftMenuList;
+		//List<Menu> leftMenuList = this.getLeftMenuList(menuList);
+		return this.getLeftMenuVo(menuList);
 	}
 	
-	/**
-	 * 获取左侧菜单树列表
-	 * @author yanglei
-	 * 2017年6月28日 上午10:24:00
-	 */
-	private List<Menu> getLeftMenuList(List<Menu> menuList){
-		List<Menu> resultList = null;
+	private List<MenuVo> getLeftMenuVo(List<Menu> menuList){
+		List<MenuVo> resultList = null;
 		if(menuList != null && menuList.size() > 0){
-			Map<String, List<Menu>> menuMap = new LinkedHashMap<String, List<Menu>>();
-			List<Menu> tmpList = new ArrayList<Menu>();
-			String parentId = "";
+			Map<String, MenuVo> parentMenuMap = new LinkedHashMap<String, MenuVo>();
+			Map<String, List<MenuVo>> childrenMenuMap = new LinkedHashMap<String, List<MenuVo>>();
 			for(Menu menu : menuList){
-				if(menu != null && menu.getMenuLevel() == 1){
-					tmpList = new ArrayList<Menu>();
-					tmpList.add(menu);
-					menuMap.put(menu.getMenuId(), tmpList);
+				MenuVo menuVo = new MenuVo();
+				menuVo.setTitle(menu.getMenuName());
+				menuVo.setIcon("");
+				menuVo.setHref(StringUtils.isBlank(menu.getReqUrl()) ? "" : menu.getReqUrl());
+				menuVo.setSpread(false);
+				if(menu.getMenuLevel() == 1){
+					parentMenuMap.put(menu.getMenuId(), menuVo);
 				}
-				if(menu != null && menu.getMenuLevel() == 2){
-					if(!parentId.equals(menu.getParentId())){
-						parentId = menu.getParentId();
+				if(menu.getMenuLevel() == 2){
+					List<MenuVo> tmpList = childrenMenuMap.get(menu.getParentId());
+					if(tmpList == null || tmpList.size() <= 0){
+						tmpList = new LinkedList<MenuVo>();
 					}
-					menuMap.get(parentId).add(menu);
+					tmpList.add(menuVo);
+					childrenMenuMap.put(menu.getParentId(), tmpList);
 				}
 			}
 			
-			if(MapUtils.isNotEmpty(menuMap)){
-				resultList = new ArrayList<Menu>();
-				for(Entry<String, List<Menu>> entry : menuMap.entrySet()){
-					resultList.addAll(entry.getValue());
+			resultList = new ArrayList<MenuVo>();
+			
+			for(Entry<String, MenuVo> entry : parentMenuMap.entrySet()){
+				List<MenuVo> list = childrenMenuMap.get(entry.getKey());
+				if(list != null && list.size() > 0){
+					entry.getValue().setChildren(list);
 				}
+				resultList.add(entry.getValue());
 			}
 		}
 		return resultList;

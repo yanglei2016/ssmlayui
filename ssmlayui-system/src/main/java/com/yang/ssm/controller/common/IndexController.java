@@ -4,14 +4,17 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yang.common.contants.PlatFormConstants;
+import com.yang.common.tools.json.GsonUtils;
 import com.yang.ssm.common.vo.UserVo;
-import com.yang.ssm.domain.Menu;
+import com.yang.ssm.domain.MenuVo;
 import com.yang.ssm.service.MenuService;
 
 /**
@@ -21,6 +24,8 @@ import com.yang.ssm.service.MenuService;
  */
 @Controller
 public class IndexController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 	
 	@Autowired
 	private MenuService menuService;
@@ -33,8 +38,10 @@ public class IndexController {
 	@RequestMapping("/loginSuccess.do")
 	public String loginSuccess(Model model, HttpServletRequest request){
 		UserVo userVo = (UserVo)request.getSession().getAttribute(PlatFormConstants.USER_INFO);
-		List<Menu> leftMenuList = menuService.selectLeftMenuList(userVo.getUserId());
-		model.addAttribute("leftMenuList", leftMenuList);
+		List<MenuVo> leftMenuList = menuService.selectLeftMenuList(userVo.getUserId());
+		
+		logger.info("菜单数据：{}", GsonUtils.toJsonString(leftMenuList));
+		model.addAttribute("leftMenuJson", GsonUtils.toJsonString(leftMenuList));
 		return "layout/index";
 	}
 	
