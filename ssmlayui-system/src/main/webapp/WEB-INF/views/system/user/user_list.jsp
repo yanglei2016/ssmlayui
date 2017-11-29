@@ -8,6 +8,30 @@
 <body>
 <div class="childrenBody">	
 	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+	  <legend>查询参数</legend>
+	</fieldset>
+	<form class="layui-form layui-form-pane" action="userList.do" method="post" name="myform" id="myform">
+		<div class="layui-form-item">
+			<label class="layui-form-label">短输入框</label>
+			<div class="layui-input-inline">
+				<input type="text" name="username" class="layui-input"/>
+			</div>
+			<label class="layui-form-label">短输入框</label>
+			<div class="layui-input-inline">
+				<input type="text" name="username" class="layui-input"/>
+			</div>
+			
+			<input type="submit" value="查询" class="layui-btn"/>
+			<ssm:auth no="010101">
+				<input type="button" id="addBtn" value="新增" class="layui-btn" onclick="userInsert()" />
+			</ssm:auth>
+			<ssm:auth no="010104">
+				<input type="button" id="addBtn" value="导出" class="layui-btn" onclick="exportExcel()" />
+			</ssm:auth>
+		</div>
+	</form>
+	
+	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
 	  <legend>用户列表</legend>
 	</fieldset>
 	<div class="layui-form">
