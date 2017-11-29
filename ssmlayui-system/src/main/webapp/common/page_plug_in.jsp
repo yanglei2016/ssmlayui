@@ -24,8 +24,11 @@
   	<input type="hidden" name="pageSize" id="pageSize" class="form-control" value="${page.pageSize }">
   </span>
   <a href="javascript:void(0);" class="layui-laypage-next" onclick="setPage('1')">首页</a>
-  <c:if test="${page.totalPage > 1 }">
+  <c:if test="${page.totalPage > 1 && currentPage+1 > 1}">
   	<a href="javascript:void(0);" class="layui-laypage-prev" onclick="setPage('${currentPage}')">上一页</a>
+  </c:if>
+  <c:if test="${currentPage+1 <= 1 || page.totalPage <= 1}">
+  	<a href="javascript:void(0);" class="layui-laypage-prev layui-disabled">上一页</a>
   </c:if>
   <c:set var="startPage" value="1" />
   <c:set var="endPage" value="${showCount}" />
@@ -53,10 +56,12 @@
   		</c:if>
   	</c:if>
   </c:forEach>
-   <c:if test="${currentPage+1 <= page.totalPage }">
+	<c:if test="${currentPage+1 < page.totalPage }">
    		<a href="javascript:void(0);" class="layui-laypage-next" onclick="setPage('${currentPage+2}')">下一页</a>
-   </c:if>
-    
+	</c:if>
+	<c:if test="${currentPage+1 == page.totalPage}">
+  		<a href="javascript:void(0);" class="layui-laypage-next layui-disabled">下一页</a>
+  	</c:if>
   	<a href="javascript:void(0);" class="layui-laypage-next" onclick="setPage('${page.totalPage }')">尾页</a>
     <span class="layui-laypage-count">
     	共&nbsp;<strong>${page.totalPage }</strong>&nbsp;页&nbsp;&nbsp;跳转到
@@ -96,6 +101,7 @@ function flagPage(currentPage){
 // 	alert(currentPage + " totalPage=" + $("#totalPage").val() + "result=" + result );
 	return result;
 }
+
 </script>
 </c:if>  
 </c:if> 
