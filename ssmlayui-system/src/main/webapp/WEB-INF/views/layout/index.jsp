@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>后台管理系统</title>
-<%@include file="../common/include.jsp" %>
+<%@include file="/common/include.jsp" %>
 </head>
 <body class="main_body">
 	<div class="layui-layout layui-layout-admin">

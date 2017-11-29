@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="../common/include.jsp" %>
+<%@include file="/common/include.jsp" %>
 
 <!-- 左侧导航 -->
 <div class="layui-side layui-bg-black">
