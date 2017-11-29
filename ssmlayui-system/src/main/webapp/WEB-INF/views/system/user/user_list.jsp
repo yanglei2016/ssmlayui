@@ -6,96 +6,57 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/resourcesStyle/sysjs/system/user/user.js"></script>
 </head>
 <body>
-  <div class="right"  id="mainFrame">
-  <div class="right_cont">
-  <ul class="breadcrumb">当前位置：
-    <a href="#">系统管理</a> <span class="divider">/</span>
-    <a href="userList.do">用户管理</a>
-  </ul>
-  <div class="title_right"><strong>参数查询</strong></div>  
-  <div style="width:100%; margin:auto">
-	<form action="userList.do" method="post" name="myform" id="myform">
-		<table class="table table-bordered">
-			<tr>
-				<td width="15%" align="right" bgcolor="#f1f1f1">用户编号</td>
-				<td width="30%">
-					
-				</td>
-				<td width="15%" align="right" bgcolor="#f1f1f1">用户名称</td>
-				<td width="30%">
-					
-				</td>
-			</tr>
-		</table>
-		<table class="margin-bottom-20 table  no-border">
-			<tr>
-				<td class="text-center">
-					<input type="submit" value="查询"class="btn btn-info " style="width: 80px;" />
-					<ssm:auth no="010101">
-						<input type="button" id="addBtn" value="新增" class="btn btn-info " style="width: 80px;" onclick="userInsert()" />
-					</ssm:auth>
-					<ssm:auth no="010104">
-						<input type="button" id="addBtn" value="导出" class="btn btn-info " style="width: 80px;" onclick="exportExcel()" />
-					</ssm:auth>
-				</td>
-			</tr>
-		</table>
-	</form>
-
-		<table class="table table-bordered">
-			<tr>
-				<td align="center" nowrap="nowrap" bgcolor="#f1f1f1"><strong>用户编号</strong></td>
-				<td align="center" nowrap="nowrap" bgcolor="#f1f1f1"><strong>用户名称</strong></td>
-				<td align="center" nowrap="nowrap" bgcolor="#f1f1f1" width="15%"><strong>操作</strong></td>
-			</tr>
-			<c:if test="${empty resultList}">
-			<tr>
-				<td align="center" colspan="9">暂无数据</td>
-			</tr>
-			</c:if>
-			<c:if test="${not empty resultList }">
+<div class="childrenBody">	
+	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+	  <legend>用户列表</legend>
+	</fieldset>
+	<div class="layui-form">
+		<table class="layui-table">
+			<colgroup>
+		      <col width="150"/>
+		      <col width="150"/>
+		      <col width="200"/>
+		    </colgroup>
+			<thead>
+				<tr>
+					<td align="center">用户编号</td>
+					<td align="center">用户名称</td>
+					<td align="center">操作</td>
+				</tr>
+			</thead>
+			<tbody>
+				<c:if test="${empty resultList}">
+				<tr>
+					<td align="center" colspan="9">暂无数据</td>
+				</tr>
+				</c:if>
+				<c:if test="${not empty resultList }">
 				<c:forEach var="bean" items="${resultList}" varStatus="status">
 					<tr ${status.count % 2 == 1 ? "" : "bgcolor='#f2f2f2'"} onmouseover="mouseOver(this)" onmouseout="mouseOut(this)">
 						<td align="center">${bean.userId}</td>
 						<td align="center">${bean.userName}</td>
 						<td align="center">
-							<a href="toUserOperation.do?pageType=detail&userId=${bean.userId}">详细</a>
-			           		<ssm:auth no="010102">| <a href="toUserOperation.do?pageType=update&userId=${bean.userId}">修改</a></ssm:auth>
-			           		<ssm:auth no="010103">| <a href="toUserOperation.do?pageType=delete&userId=${bean.userId}">删除</a></ssm:auth>
-			           		| <a data-toggle="modal" data-target="#myModal" href="javascript:void(0)">详细</a>
+							<a class="layui-btn layui-btn-normal layui-btn-xs" href="toUserOperation.do?pageType=detail&userId=${bean.userId}">详细</a>
+			           		<ssm:auth no="010102"><a class="layui-btn layui-btn-normal layui-btn-xs" href="toUserOperation.do?pageType=update&userId=${bean.userId}">修改</a></ssm:auth>
+			           		<ssm:auth no="010103"><a class="layui-btn layui-btn-danger layui-btn-xs" href="toUserOperation.do?pageType=delete&userId=${bean.userId}">删除</a></ssm:auth>
 						</td>
 					</tr>
 				</c:forEach>
 			</c:if>
-		</table>
-		<%@include file="/common/page_plug_in.jsp" %>
-    </div> 
-  </div>
-  </div>
-  
-  
-<div id="myModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:600px; margin-left:-300px; top:20%">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="myModalLabel">线路管理</h3>
-	</div>
-	<div class="modal-body">
-		<table class="table table-bordered">
-			<tbody>
-				<tr>
-				  <td align="right">联系人</td>
-				  <td align="left"><input name="manTextBox" type="text" id="manTextBox" class="span1-1" /></td>
-				  <td align="right">电话:</td>
-				  <td align="left" colspan="3"><input name="phoneTextBox" type="text" id="phoneTextBox" class="span1-1" /></td>
-				</tr>
 			</tbody>
+			
+			<tfoot>
+				<tr>
+					<td colspan="100">
+						<%@include file="/common/page_plug_in.jsp" %>
+					</td>
+				</tr>
+			</tfoot>
 		</table>
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-info" data-dismiss="modal" aria-hidden="true" style="width:80px">保存</button> 
-		<button class="btn btn-info" data-dismiss="modal" aria-hidden="true" style="width:80px">取消</button> 
 	</div>
 </div>
-  
-  
+<script type="text/javascript">
+
+</script>
 </body>
+</html>

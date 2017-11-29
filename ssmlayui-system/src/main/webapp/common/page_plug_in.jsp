@@ -9,10 +9,7 @@
 	</c:forEach>
 </c:if>
 <!-- 查询参数 end-->
-
-
-<nav>
-  <ul class="pagination pager ">
+<div class="layui-box layui-laypage layui-laypage-default">
   <!-- 分页对象 -->
   <c:set var="page" value="${parameterMap.PAGE_PARAMS }" />
   <!-- 分页条显示的页码数量 -->
@@ -22,11 +19,13 @@
   <c:if test="${currentPage<0 }">
  	<c:set var="currentPage" value="0" />
   </c:if>
-  <li class="pageInfo"><b>总记录</b>${page.count }<b>条</b></li>
-  <li class="pageInfo"><b>每页显示</b><input type="text" name="pageSize" id="pageSize" class="form-control" value="${page.pageSize }"><b>条</b></li>
-  <li><a href="#" aria-label="Previous" onclick="setPage('1')"><span aria-hidden="true">首页</span></a></li>
+  <span class="layui-laypage-count">
+  	共&nbsp;<strong>${page.count }</strong>&nbsp;条记录&nbsp;&nbsp;<strong>${page.pageSize }</strong>&nbsp;条/页
+  	<input type="hidden" name="pageSize" id="pageSize" class="form-control" value="${page.pageSize }">
+  </span>
+  <a href="javascript:void(0);" class="layui-laypage-next" onclick="setPage('1')">首页</a>
   <c:if test="${page.totalPage > 1 }">
-  	<li><a href="#" aria-label="Previous" onclick="setPage('${currentPage}')"><span aria-hidden="true">上一页</span></a></li>
+  	<a href="javascript:void(0);" class="layui-laypage-prev" onclick="setPage('${currentPage}')">上一页</a>
   </c:if>
   <c:set var="startPage" value="1" />
   <c:set var="endPage" value="${showCount}" />
@@ -43,25 +42,29 @@
   <c:forEach begin="${startPage }" end="${endPage }" varStatus="co">
   	<c:if test="${co.index <= page.totalPage }">
   		<c:if test="${currentPage+1 eq co.index }">
-  			<li class="current"><a href="javascript:void(0)" onclick="setPage('${co.index}')">${co.index }</a></li>
+  			<span class="layui-laypage-curr" onclick="setPage('${co.index}')">
+  				<em class="layui-laypage-em"></em>
+  				<em>${co.index }</em>
+  			</span>
+  			
   		</c:if>
   		<c:if test="${currentPage+1 ne co.index }">
-  			<li><a href="javascript:void(0)" onclick="setPage('${co.index}')">${co.index }</a></li>
+  			<a href="javascript:void(0);" onclick="setPage('${co.index}')">${co.index }</a>
   		</c:if>
   	</c:if>
   </c:forEach>
-   <c:if test="${endPage <= page.totalPage }">
-   		<li><a href="javascript:void(0)" aria-label="Next" onclick="setPage('${currentPage+2}')"><span aria-hidden="true">下一页</span></a></li>
+   <c:if test="${currentPage+1 <= page.totalPage }">
+   		<a href="javascript:void(0);" class="layui-laypage-next" onclick="setPage('${currentPage+2}')">下一页</a>
    </c:if>
     
-  	<li><a href="#" aria-label="Previous" onclick="setPage('${page.totalPage }')"><span aria-hidden="true">尾页</span></a></li>
-    <li class="jumpPage"><b>跳转到</b>
-    <input type="hidden" name="totalPage" id="totalPage" value="${page.totalPage }" />
-    <input type="text" name="currentPage" id="currentPage" class="form-control" value="${currentPage+1 }" />页<button class="btn btn-info  margin-right-20" onclick="submitPage();">确认</button>
-    
-    </li>
-  </ul>
-</nav>
+  	<a href="javascript:void(0);" class="layui-laypage-next" onclick="setPage('${page.totalPage }')">尾页</a>
+    <span class="layui-laypage-count">
+    	共&nbsp;<strong>${page.totalPage }</strong>&nbsp;页&nbsp;&nbsp;跳转到
+	    <input type="hidden" name="totalPage" id="totalPage" value="${page.totalPage }" class="layui-input"/>
+	    <input type="text" name="currentPage" id="currentPage" class="form-control" value="${currentPage+1 }" />页
+	    <button type="button" class="layui-laypage-btn" onclick="submitPage();">确认</button>
+    </span>
+</div>
 </form>
 <script type="text/javascript">
 // 选择分页

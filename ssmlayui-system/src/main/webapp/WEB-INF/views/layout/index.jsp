@@ -15,7 +15,6 @@
 		<!-- left -->
 		<jsp:include page="left.jsp" />
 		
-		
 		<!-- 右侧内容 -->
 		<div class="layui-body layui-form">
 			<div class="layui-tab marg0" lay-filter="bodyTab" id="top_tabs_box">
@@ -46,8 +45,7 @@
 
 <script type="text/javascript">
 var leftMenuJson = '${leftMenuJson}';
-console.log(leftMenuJson);
-
+//console.log(leftMenuJson);
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/leftNav.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/index.js"></script>

@@ -5,21 +5,18 @@
 <%@include file="../common/include.jsp" %>
 </head>
 <body>
-<div class="childrenBody"  id="mainFrame">
-	<div class="">
-		<span class="layui-breadcrumb">
-		  <a href="/">首页</a>
-		  <a href="/demo/">演示</a>
-		  <a><cite>导航元素</cite></a>
-		</span>
-		<div style="width:100%; margin:auto">
-			<table class="layui-table">
-				<tr>
-					<td>提示：</td>
-					<td>欢迎xxx登陆</td>
-				</tr>
-			</table>
-		</div>
+<div class="childrenBody">	
+	
+	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+	  <legend>我的工作台</legend>
+	</fieldset>
+	<div>
+		<table class="layui-table">
+			<tr>
+				<td>提示：</td>
+				<td>欢迎xxx登陆</td>
+			</tr>
+		</table>
 	</div>
 </div>
 </body>
